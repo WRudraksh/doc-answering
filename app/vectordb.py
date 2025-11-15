@@ -31,7 +31,7 @@ class FaissStore:
         self.index.add(np_vectors)
         self.metadatas.extend(metadatas)
 
-    def serach(self, query_vector: List[float], k: int=5):
+    def search(self, query_vector: List[float], k: int=5):
         q = np.array(query_vector).astype("float32").reshape(1, -1)
         distances, indices = self.index.search(q, k)
         results = []
