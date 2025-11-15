@@ -23,7 +23,6 @@ class FaissStore:
             inst.metadatas = pickle.load(f)
         return inst
     
-
     def add(self, vectors: List[List[float]], metadatas: List[Dict]):
         if len(vectors) != len(metadatas):
             raise ValueError("Length of vectors and metadatas must be the same.")
