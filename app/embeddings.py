@@ -1,6 +1,8 @@
 from openai import OpenAI
+from app.config import OPENAI_API_KEY
 
-def get_embedding_client(api_key: str):
+def get_embedding_client():
+    api_key = OPENAI_API_KEY
     return OpenAI(api_key=api_key)
 
 def embed(client, texts:list, model: str="text-embedding-3-small"):
