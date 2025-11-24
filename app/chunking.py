@@ -5,7 +5,7 @@ def get_text_splitter():
         chunk_size = 500,
         chunk_overlap =100,
         length_function = len,
-        sperator = ["\n\n", "\n", " ", ""] 
+        separators = ["\n\n", "\n", " ", ""] 
     )
     return splitter
 

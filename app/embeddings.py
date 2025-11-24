@@ -1,14 +1,9 @@
-from openai import OpenAI
-from app.config import OPENAI_API_KEY
+import os
+os.environ["TRANSFORMERS_NO_TF"] = "1"
+from sentence_transformers import SentenceTransformer
 
-def get_embedding_client():
-    api_key = OPENAI_API_KEY
-    return OpenAI(api_key=api_key)
+model = SentenceTransformer("BAAI/bge-base-en-v1.5")
 
-def embed(client, texts:list, model: str="text-embedding-3-small"):
-    response = client.embeddings.create(
-        input=texts,
-        model=model
-    )
-    embeddings = [data_point.embedding for data_point in response.data]
-    return embeddings
+def embed_texts(text: list):
+    vectors = model.encode(text, normalize_embeddings=True)
+    return vectors.tolist()
